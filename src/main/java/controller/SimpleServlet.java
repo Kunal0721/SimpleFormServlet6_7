@@ -35,8 +35,7 @@ public class SimpleServlet extends HttpServlet {
 		int i = dao.insert(st);
 		PrintWriter out = response.getWriter();
 		if (i != 0) {
-			request.getRequestDispatcher("read").forward(request, response);
-			
+			response.sendRedirect("read");
 		} else {
 			out.println("<h1> Something went wrong </h1>");
 		}

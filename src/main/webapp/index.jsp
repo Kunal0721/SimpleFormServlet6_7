@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +14,7 @@
 </head>
 <body>
 
+	<%@ include file="navbar.jsp" %>
 	<div class="container">
 		<div class="row justify-content-center align-items-center"
 			style="height: 90vh;">
@@ -18,15 +22,15 @@
 				<h1 class="text-center my-3">Student</h1>
 				<form action="abc" method="post">
 					<div class="mb-3">
-						<input type="text" name="nm" class="form-control">
+						<input type="text" name="nm" placeholder="Enter name" class="form-control">
 
 					</div>
 					<div class="mb-3">
-						<input type="number" name="age" class="form-control">
+						<input type="number" name="age" class="form-control" placeholder="Enter age">
 
 					</div>
 					<div class="mb-3 ">
-						<input type="text" name="course" class="form-control">
+						<input type="text" name="course" class="form-control" placeholder="Enter course">
 
 					</div>
 					<div class="d-grid">
