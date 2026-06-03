@@ -44,8 +44,8 @@
 							<td><%=s.getName()%></td>
 							<td><%=s.getAge()%></td>
 							<td><%=s.getCourse()%></td>
-							<td><a class="btn btn-warning">Update</a> <a
-								class="btn btn-danger">delete</a></td>
+							<td><a class="btn btn-warning" href="update?id=<%=s.getId() %>">Update</a> 
+							<a 	class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this : <%= s.getId() %>')"  href="delete?id=<%= s.getId()%>">delete</a></td>
 
 						</tr>
 

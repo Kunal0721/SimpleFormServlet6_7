@@ -27,26 +27,82 @@ public class StudentDAO {
 		}
 		return i;
 	}
-	
-	// read all : 
-	public List<Student> getAll(){
+
+	// read all :
+	public List<Student> getAll() {
 		List<Student> ls = new LinkedList<>();
 		try {
 			Connection con = DBUtil.makeConnection();
 			PreparedStatement pst = con.prepareStatement("select * from student");
 			ResultSet rs = pst.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				int id = rs.getInt("id");
 				String name = rs.getString("name");
 				int age = rs.getInt("age");
 				String course = rs.getString("course");
-				
+
 				ls.add(new Student(id, name, age, course));
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return ls;
+	}
+
+	public int delete(int id) {
+		int i = 0;
+
+		try {
+			Connection con = DBUtil.makeConnection();
+			PreparedStatement pst = con.prepareStatement("delete from student where id = ?");
+			pst.setInt(1, id);
+			i = pst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
+
+	public Student getOne(int id) {
+		Student student = null;
+
+		try {
+			Connection con = DBUtil.makeConnection();
+			PreparedStatement pst = con.prepareStatement("select * from student where id=?");
+			pst.setInt(1, id);
+
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				int i = rs.getInt("id");
+				String name = rs.getString("name");
+				int age = rs.getInt("age");
+				String course = rs.getString("course");
+
+				student = new Student(i, name, age, course);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return student;
+	}
+
+	public int updateStudent(Student st) {
+		int i = 0;
+
+		try {
+			Connection con = DBUtil.makeConnection();
+			PreparedStatement pst = con.prepareStatement("update student set name=?, age=?, course=? where id=?");
+			pst.setString(1, st.getName());
+			pst.setInt(2, st.getAge());
+			pst.setString(3, st.getCourse());
+			pst.setInt(4, st.getId());
+			i = pst.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return i;
 	}
 }
